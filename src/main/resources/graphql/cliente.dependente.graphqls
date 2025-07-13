@@ -1,0 +1,9 @@
+extend type Query {
+    fetchDependenteById(id: ID!): ClienteDependenteResponse!
+    fetchDependenteByIdCliente(id: ID!): [ClienteDependenteResponse!]
+}
+
+extend type Mutation {
+    saveClienteDependente(request: ClienteDependenteRequest!): ClienteDependenteResponse!
+    deleteDependenteById(id: ID!): Boolean!
+}

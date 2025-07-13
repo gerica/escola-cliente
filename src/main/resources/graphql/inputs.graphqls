@@ -1,0 +1,46 @@
+input EstadoRequest{
+    sigla: String
+    descricao: String
+}
+
+input MunicipioRequest{
+    codigo: String
+    descricao: String
+    uf: String
+}
+
+input SortRequest {
+    property: String!
+    direction: SortOrder!
+}
+
+input ClienteContatoRequest {
+    id: ID
+    idCliente: ID
+    numero: String
+}
+
+input ClienteDependenteRequest {
+    id: ID
+    idCliente: ID!
+    nome: String!
+    sexo: Sexo!
+    parentesco: TipoParentesco!
+    docCPF: String!
+    dataNascimento: String!
+}
+
+input ClienteRequest {
+    id: ID
+    nome: String
+    dataNascimento: Date
+    cidade: MunicipioRequest
+    docCPF: String
+    docRG: String
+    telResidencial: String
+    telCelular: String
+    endereco: String
+    email: String
+    profissao: String
+    localTrabalho: String
+}

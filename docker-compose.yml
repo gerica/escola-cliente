@@ -1,0 +1,23 @@
+name: escola
+
+services:
+  client-service:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: client-service
+    ports:
+      - "${CLIENT_SERVICE_PORT}:${CLIENT_SERVICE_PORT}"
+      - "${CLIENT_SERVICE_DEBUG_PORT}:${CLIENT_SERVICE_DEBUG_PORT}"
+    volumes:
+      # Mapeia o diretório atual (raiz do projeto) para /app
+      - .:/app
+    # A diretiva 'env_file' diz explicitamente para carregar as variáveis deste arquivo.
+    env_file:
+      - ./.env
+    networks:
+      - escola-network
+
+networks:
+  escola-network:
+    driver: bridge

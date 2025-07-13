@@ -1,0 +1,9 @@
+extend type Query {
+    fetchContatoById(id: ID!): ClienteContatoResponse!
+    fetchContatoByIdCliente(id: ID!): [ClienteContatoResponse!]
+}
+
+extend type Mutation {
+    saveClienteContato(request: ClienteContatoRequest!): ClienteContatoResponse!
+    deleteContatoById(id: ID!): Boolean!
+}

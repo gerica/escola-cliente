@@ -1,0 +1,74 @@
+type ClienteContatoResponse {
+    id: ID
+    numero: String
+}
+
+type EstadoResponse{
+    sigla: String
+    descricao: String
+}
+
+type MunicipioResponse{
+    codigo: String
+    descricao: String
+    estado: EstadoResponse
+    uf: String
+}
+
+type ContratoResponse {
+    id: ID! # Assuming you'll have an ID for the saved contract
+    nome: String
+    dataNascimento: Date
+    estado: String
+    cidade: String
+    docCPF: String
+    docRG: String
+    telResidencial: String
+    telCelular: String
+    endereco: String
+    email: String
+    profissao: String
+    localTrabalho: String
+}
+
+type ClienteDependenteResponse {
+    id: ID!
+    nome: String!
+    sexo: Sexo!
+    parentesco: TipoParentesco!
+    parentescoDescricao: String!
+    docCPF: String
+    dataNascimento: String
+}
+
+type ClienteResponse {
+    id: ID! # Assuming you'll have an ID for the saved contract
+    nome: String
+    dataNascimento: Date
+    cidade: MunicipioResponse
+    docCPF: String
+    docRG: String
+    endereco: String
+    email: String
+    profissao: String
+    localTrabalho: String
+}
+
+# Tipo padrão para respostas paginadas, usado pelo Spring for GraphQL
+type ClienteResponsePage {
+    content: [ClienteResponse]
+    totalPages: Int
+    totalElements: Long
+    number: Int
+    size: Int
+    first: Boolean!
+    last: Boolean!
+    empty: Boolean!
+}
+
+type AppConfigResponse{
+    name: String
+    description: String
+    version: String
+    time: DateTime
+}

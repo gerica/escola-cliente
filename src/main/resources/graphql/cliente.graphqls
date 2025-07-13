@@ -1,0 +1,14 @@
+extend type Query {
+    fetchAllClientes(
+        filtro: String
+        page: Int = 0 # Default to page 0
+        size: Int = 10 # Default to size 10
+        sort: [SortRequest]
+    ): ClienteResponsePage!
+
+    fetchByIdCliente(id: ID): ClienteResponse!
+}
+
+extend type Mutation {
+    saveCliente(request: ClienteRequest!): ClienteResponse!
+}
