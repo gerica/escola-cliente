@@ -1,11 +1,11 @@
-package com.escola.client.model.model.response;
+package com.escola.client.model.response;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-import java.time.OffsetDateTime;
+import java.time.Instant;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
@@ -14,5 +14,5 @@ public class AppConfigResponse {
     String name;
     String description;
     String version;
-    OffsetDateTime time;
+    Instant time;
 }

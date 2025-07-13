@@ -1,7 +1,7 @@
-package com.escola.client.model.model.mapper;
+package com.escola.client.model.mapper;
 
 
-import com.escola.client.model.model.response.AppConfigResponse;
+import com.escola.client.model.request.AppConfigResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.boot.info.BuildProperties;

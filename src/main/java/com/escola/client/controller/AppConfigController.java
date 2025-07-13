@@ -1,8 +1,8 @@
 package com.escola.client.controller;
 
 
-import com.escola.client.model.model.mapper.AppConfigMapper;
-import com.escola.client.model.model.response.AppConfigResponse;
+import com.escola.client.model.mapper.AppConfigMapper;
+import com.escola.client.model.request.AppConfigResponse;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
