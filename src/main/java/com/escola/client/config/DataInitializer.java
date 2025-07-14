@@ -2,20 +2,17 @@ package com.escola.client.config;
 
 import com.escola.client.model.entity.*;
 import com.escola.client.repository.ClienteRepository;
-import com.escola.client.repository.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 @Component
 @RequiredArgsConstructor
@@ -23,8 +20,6 @@ import java.util.Set;
 @Slf4j
 public class DataInitializer implements CommandLineRunner {
 
-    UserRepository userRepository;
-    PasswordEncoder passwordEncoder;
     ClienteRepository clienteRepository;
     Random random = new Random();
     // Lista de nomes de exemplo
