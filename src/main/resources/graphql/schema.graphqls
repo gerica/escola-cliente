@@ -1,0 +1,25 @@
+input SortRequest {
+    property: String!
+    direction: SortOrder!
+}
+
+type AppConfigResponse{
+    name: String
+    description: String
+    version: String
+    time: DateTime
+}
+
+# schema.graphqls
+type Query {
+    getAppConfig: AppConfigResponse!
+}
+
+type Mutation {
+    # Nenhuma mutation específica aqui, apenas a definição do tipo
+}
+
+# Se você tiver subscriptions
+# type Subscription {
+#     # Nenhuma subscription específica aqui
+# }

@@ -1,0 +1,17 @@
+type ContratoResponse {
+    id: ID! # Assuming you'll have an ID for the saved contract
+    nome: String
+    dataNascimento: Date
+    estado: String
+    cidade: String
+    docCPF: String
+    docRG: String
+    telResidencial: String
+    telCelular: String
+    endereco: String
+    email: String
+    profissao: String
+    localTrabalho: String
+}
+
+

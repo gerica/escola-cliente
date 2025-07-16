@@ -1,3 +1,14 @@
+type ClienteContatoResponse {
+    id: ID
+    numero: String
+}
+
+input ClienteContatoRequest {
+    id: ID
+    idCliente: ID
+    numero: String
+}
+
 extend type Query {
     fetchContatoById(id: ID!): ClienteContatoResponse!
     fetchContatoByIdCliente(id: ID!): [ClienteContatoResponse!]

@@ -1,3 +1,24 @@
+type ClienteDependenteResponse {
+    id: ID!
+    nome: String!
+    sexo: Sexo!
+    parentesco: TipoParentesco!
+    parentescoDescricao: String!
+    docCPF: String
+    dataNascimento: String
+}
+
+
+input ClienteDependenteRequest {
+    id: ID
+    idCliente: ID!
+    nome: String!
+    sexo: Sexo!
+    parentesco: TipoParentesco!
+    docCPF: String!
+    dataNascimento: String!
+}
+
 extend type Query {
     fetchDependenteById(id: ID!): ClienteDependenteResponse!
     fetchDependenteByIdCliente(id: ID!): [ClienteDependenteResponse!]
