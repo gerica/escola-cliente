@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -34,7 +35,9 @@ public class ClienteServiceImpl implements ClienteService {
             entity = clienteMapper.updateEntity(request, optional.get());
         } else {
             entity = clienteMapper.toEntity(request);
+            entity.setDataCadastro(LocalDateTime.now());
         }
+        entity.setDataAtualizacao(LocalDateTime.now());
         return clienteRepository.save(entity);
 
     }

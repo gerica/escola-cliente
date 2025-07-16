@@ -48,6 +48,11 @@ dependencies {
 	// GraphQL
 	implementation 'com.graphql-java:graphql-java-extended-scalars:22.0'
 
+	// Para as APIs de validação (jakarta.validation.constraints)
+	implementation 'jakarta.validation:jakarta.validation-api:3.0.2' // Ou a versão mais recente
+	// Para a implementação do Bean Validation (Hibernate Validator é a mais comum)
+	implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final' // Ou a versão mais recente
+
 	// Code Generation & Utilities (Lombok & MapStruct)
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -70,15 +75,24 @@ dependencyManagement {
 
 // Adicione este bloco ao seu build.gradle
 bootRun {
+	// Começa com os argumentos obrigatórios da JVM
+	jvmArgs = ['--add-opens=java.base/java.lang=ALL-UNNAMED']
 	// Verifica se a propriedade 'debug' foi passada na linha de comando (ex: ./gradlew bootRun -Pdebug)
 	if (project.hasProperty('debug')) {
-		jvmArgs = ['-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5007']
+		// Adiciona o argumento de debug à lista existente, em vez de substituí-la
+		jvmArgs += '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5007'
 	}
 }
 
+// Adicione este bloco para obter detalhes sobre APIs obsoletas
+tasks.withType(JavaCompile) {
+	options.compilerArgs += "-Xlint:deprecation"
+}
 
 tasks.named('test') {
 	useJUnitPlatform()
+	// Garante que os testes também executem com os argumentos JVM necessários
+	jvmArgs = ['--add-opens=java.base/java.lang=ALL-UNNAMED']
 }
 
 // --- Tasks para Gerenciamento do Docker Compose ---

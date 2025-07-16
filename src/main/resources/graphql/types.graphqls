@@ -3,18 +3,6 @@ type ClienteContatoResponse {
     numero: String
 }
 
-type EstadoResponse{
-    sigla: String
-    descricao: String
-}
-
-type MunicipioResponse{
-    codigo: String
-    descricao: String
-    estado: EstadoResponse
-    uf: String
-}
-
 type ContratoResponse {
     id: ID! # Assuming you'll have an ID for the saved contract
     nome: String
@@ -45,7 +33,9 @@ type ClienteResponse {
     id: ID! # Assuming you'll have an ID for the saved contract
     nome: String
     dataNascimento: Date
-    cidade: MunicipioResponse
+    cidadeDesc: String
+    uf: String
+    codigoCidade: String
     docCPF: String
     docRG: String
     endereco: String

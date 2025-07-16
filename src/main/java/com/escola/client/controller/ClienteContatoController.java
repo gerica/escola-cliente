@@ -27,13 +27,13 @@ public class ClienteContatoController {
     @QueryMapping
     @PreAuthorize("isAuthenticated()")
     public Optional<ClienteContatoResponse> fetchContatoById(@Argument Integer id) {
-        return service.findById(id).map(mapper::toOutput);
+        return service.findById(id).map(mapper::toResponse);
     }
 
     @QueryMapping
     @PreAuthorize("isAuthenticated()")
     public Optional<List<ClienteContatoResponse>> fetchContatoByIdCliente(@Argument Integer id) {
-        return service.findAllByClienteId(id).map(mapper::toOutputList);
+        return service.findAllByClienteId(id).map(mapper::toResponseList);
     }
 
     @MutationMapping
@@ -47,7 +47,7 @@ public class ClienteContatoController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public ClienteContatoResponse saveClienteContato(@Argument ClienteContatoRequest request) {
         var entity = service.save(request);
-        return mapper.toOutput(entity);
+        return mapper.toResponse(entity);
     }
 
 }

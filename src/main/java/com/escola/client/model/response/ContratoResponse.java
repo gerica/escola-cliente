@@ -1,20 +1,29 @@
 package com.escola.client.model.response;
 
-import java.util.Date;
+import com.escola.client.model.entity.StatusContrato;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public record ContratoResponse(
-        Long id,
-        String nome,
-        Date dataNascimento,
-        String estado,
-        String cidade,
-        String docCPF,
-        String docRG,
-        String telResidencial,
-        String telCelular,
-        String endereco,
-        String email,
-        String profissao,
-        String localTrabalho
+        Long idContrato,
+        String numeroContrato,
+        Long idCliente, // ID do cliente para referência, em vez do objeto Cliente completo
+        String nomeCliente, // Nome do cliente para facilitar a exibição
+        LocalDate dataInicio,
+        LocalDate dataFim,
+        BigDecimal valorTotal,
+        StatusContrato statusContrato,
+        String descricao,
+        String termosCondicoes,
+        @JsonFormat(pattern = "yyyy-MM-dd")
+        LocalDateTime dataAssinatura,
+        String periodoPagamento,
+        @JsonFormat(pattern = "yyyy-MM-dd")
+        LocalDate dataProximoPagamento,
+        String observacoes,
+        String contratoDoc
 ) {
 }

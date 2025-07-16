@@ -2,11 +2,11 @@ package com.escola.client.controller;
 
 import com.escola.client.controller.help.PageableHelp;
 import com.escola.client.controller.help.SortInput;
-import com.escola.client.model.entity.Cliente;
-import com.escola.client.model.mapper.ClienteMapper;
-import com.escola.client.model.request.ClienteRequest;
-import com.escola.client.model.response.ClienteResponse;
-import com.escola.client.service.ClienteService;
+import com.escola.client.model.entity.Contrato;
+import com.escola.client.model.mapper.ContratoMapper;
+import com.escola.client.model.request.ContratoRequest;
+import com.escola.client.model.response.ContratoResponse;
+import com.escola.client.service.ContratoService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -23,36 +23,44 @@ import java.util.Optional;
 @Controller
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class ClienteController {
+public class ContratoController {
 
-    ClienteMapper clienteMapper;
-    ClienteService clienteService;
+    public static final String SUCESSO = "Sucesso";
+    ContratoMapper contratoMapper;
+    ContratoService contratoService;
     PageableHelp pageableHelp;
 
     @MutationMapping
     @PreAuthorize("isAuthenticated()")
-    public ClienteResponse saveCliente(@Argument ClienteRequest request) {
-        var entity = clienteService.save(request);
-        return clienteMapper.toResponse(entity);
+    public ContratoResponse saveContrato(@Argument ContratoRequest request) {
+        var entity = contratoService.save(request);
+        return contratoMapper.toResponse(entity);
     }
 
     @QueryMapping
     @PreAuthorize("isAuthenticated()")
-    public Page<ClienteResponse> fetchAllClientes(
+    public Page<ContratoResponse> fetchAllContratos(
             @Argument String filtro,
             @Argument Optional<Integer> page, // Optional to handle default values from schema
             @Argument Optional<Integer> size, // Optional to handle default values from schema
             @Argument Optional<List<SortInput>> sort // Optional for sorting
     ) {
 
-        Page<Cliente> entities = clienteService.findByFiltro(filtro, pageableHelp.getPageable(page, size, sort)).orElse(Page.empty());
-        return entities.map(clienteMapper::toResponse);
+        Page<Contrato> entities = contratoService.findByFiltro(filtro, pageableHelp.getPageable(page, size, sort)).orElse(Page.empty());
+        return entities.map(contratoMapper::toResponse);
     }
 
     @QueryMapping
     @PreAuthorize("isAuthenticated()")
-    public Optional<ClienteResponse> fetchByIdCliente(@Argument Integer id) {
-        return clienteService.findById(id).map(clienteMapper::toResponse);
+    public Optional<ContratoResponse> fetchByIdContrato(@Argument Integer id) {
+        return contratoService.findById(id).map(contratoMapper::toResponse);
+    }
+
+    @QueryMapping
+    @PreAuthorize("isAuthenticated()")
+    public String apagarContrato(@Argument Integer id) {
+        contratoService.deleteById(id);
+        return SUCESSO;
     }
 
 }

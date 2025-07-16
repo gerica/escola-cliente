@@ -1,8 +1,6 @@
 package com.escola.client.security;
 
 import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -79,10 +77,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(authToken);
             log.debug("User '{}' authenticated successfully from JWT claims.", userEmail);
 
-        } catch (MalformedJwtException | SignatureException e) {
-            log.warn("Invalid JWT token: {}", e.getMessage());
-            sendErrorResponse(response, HttpStatus.UNAUTHORIZED, "Invalid token.");
-            return;
         } catch (ExpiredJwtException e) {
             log.warn("JWT token has expired: {}", e.getMessage());
             sendErrorResponse(response, HttpStatus.UNAUTHORIZED, "Token has expired.");

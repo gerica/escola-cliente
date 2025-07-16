@@ -4,13 +4,18 @@ package com.escola.client.model.mapper;
 import com.escola.client.model.request.AppConfigResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.ReportingPolicy;
 import org.springframework.boot.info.BuildProperties;
 
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 
-@Mapper(componentModel = "spring")
+@Mapper(
+        componentModel = MappingConstants.ComponentModel.SPRING,
+        unmappedTargetPolicy = ReportingPolicy.WARN
+)
 public interface AppConfigMapper {
 
     /**
@@ -22,7 +27,7 @@ public interface AppConfigMapper {
     @Mapping(source = "buildProperties.version", target = "version")
     @Mapping(source = "buildProperties.time", target = "time") // Mapeamento explícito para clareza
     @Mapping(source = "appDescription", target = "description")
-    AppConfigResponse toOutput(BuildProperties buildProperties, String appDescription);
+    AppConfigResponse toResponse(BuildProperties buildProperties, String appDescription);
 
     /**
      * Converte um Instant para um OffsetDateTime no fuso horário UTC.

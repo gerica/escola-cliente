@@ -3,14 +3,14 @@ package com.escola.client.model.mapper;
 import com.escola.client.model.entity.Cliente;
 import com.escola.client.model.request.ClienteRequest;
 import com.escola.client.model.response.ClienteResponse;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.Named;
+import org.mapstruct.*;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(
+        componentModel = MappingConstants.ComponentModel.SPRING,
+        unmappedTargetPolicy = ReportingPolicy.WARN
+)
 public interface ClienteMapper {
 
     @Named("formatCPF")
@@ -23,15 +23,25 @@ public interface ClienteMapper {
         return cpf.replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4");
     }
 
-    ClienteResponse toOutput(Cliente entity);
+    @Mapping(target = "cidadeDesc", source = "cidade")
+    ClienteResponse toResponse(Cliente entity);
 
-    List<ClienteResponse> toOutputList(List<Cliente> empresas);
+    List<ClienteResponse> toResponseList(List<Cliente> empresas);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "docCPF", source = "docCPF", qualifiedByName = "formatCPF")
+    @Mapping(target = "dataCadastro", ignore = true)
+    @Mapping(target = "dataAtualizacao", ignore = true)
+    @Mapping(target = "contatos", ignore = true)
+    @Mapping(target = "dependentes", ignore = true)
+    @Mapping(target = "contratos", ignore = true)
     Cliente toEntity(ClienteRequest request);
 
     @Mapping(target = "id", ignore = true)
-//    @Mapping(target = "endereco.enderecoCidade", source = "endereco.enderecoCidade", qualifiedByName = "mapCidadeToInteger")
+    @Mapping(target = "dataCadastro", ignore = true)
+    @Mapping(target = "dataAtualizacao", ignore = true)
+    @Mapping(target = "contatos", ignore = true)
+    @Mapping(target = "dependentes", ignore = true)
+    @Mapping(target = "contratos", ignore = true)
     Cliente updateEntity(ClienteRequest source, @MappingTarget Cliente target);
 }

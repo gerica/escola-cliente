@@ -2,13 +2,6 @@ input EstadoRequest{
     sigla: String
     descricao: String
 }
-
-input MunicipioRequest{
-    codigo: String
-    descricao: String
-    uf: String
-}
-
 input SortRequest {
     property: String!
     direction: SortOrder!
@@ -34,11 +27,11 @@ input ClienteRequest {
     id: ID
     nome: String
     dataNascimento: Date
-    cidade: MunicipioRequest
+    cidade: String
+    uf: String
+    codigoCidade: String
     docCPF: String
     docRG: String
-    telResidencial: String
-    telCelular: String
     endereco: String
     email: String
     profissao: String

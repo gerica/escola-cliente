@@ -1,12 +1,16 @@
 package com.escola.client.model.request;
 
+import com.escola.client.model.entity.StatusCliente;
+
 import java.time.LocalDate;
 
 public record ClienteRequest(
         Integer id,
         String nome,
         LocalDate dataNascimento,
-        MunicipioRequest cidade,
+        String cidade,
+        String uf,
+        String codigoCidade,
         String docCPF,
         String docRG,
         String telResidencial,
@@ -14,6 +18,7 @@ public record ClienteRequest(
         String endereco,
         String email,
         String profissao,
-        String localTrabalho
+        String localTrabalho,
+        StatusCliente statusCliente
 ) {
 }
