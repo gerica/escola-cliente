@@ -3,10 +3,7 @@ package com.escola.client.model.mapper;
 import com.escola.client.model.entity.Contrato;
 import com.escola.client.model.request.ContratoRequest;
 import com.escola.client.model.response.ContratoResponse;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
 
 import java.util.List;
 
@@ -23,10 +20,13 @@ public interface ContratoMapper {
      * @param request O objeto ContratoRequest a ser mapeado.
      * @return A entidade Contrato mapeada.
      */
-    @Mapping(target = "idContrato", ignore = true) // ID é gerado pelo banco, não vem do request
+//    @Mapping(target = "idContrato", ignore = true) // ID é gerado pelo banco, não vem do request
     @Mapping(target = "cliente", ignore = true)
     // O cliente será setado separadamente no serviço
     Contrato toEntity(ContratoRequest request);
+
+    @Mapping(target = "cliente", ignore = true)
+    Contrato updateEntity(ContratoRequest source, @MappingTarget Contrato target);
 
     /**
      * Mapeia uma entidade Contrato para um ContratoResponse.
@@ -36,6 +36,7 @@ public interface ContratoMapper {
      */
     @Mapping(source = "cliente.id", target = "idCliente") // Mapeia o ID do cliente da entidade para o response
     @Mapping(source = "cliente.nome", target = "nomeCliente")
+    // Mapeia o ID do cliente da entidade para o response
     // Mapeia o nome do cliente da entidade para o response
     ContratoResponse toResponse(Contrato contrato);
 

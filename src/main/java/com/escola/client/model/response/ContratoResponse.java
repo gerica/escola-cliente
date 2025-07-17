@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 
 public record ContratoResponse(
         Long idContrato,
+        Long idCliente,
+        String nomeCliente,
         String numeroContrato,
-        Long idCliente, // ID do cliente para referência, em vez do objeto Cliente completo
-        String nomeCliente, // Nome do cliente para facilitar a exibição
         LocalDate dataInicio,
         LocalDate dataFim,
         BigDecimal valorTotal,

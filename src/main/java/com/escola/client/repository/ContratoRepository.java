@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-public interface ContratoRepository extends CrudRepository<Contrato, Integer> {
+public interface ContratoRepository extends CrudRepository<Contrato, Long> {
 
     @Query("SELECT e FROM Contrato e " +
             " WHERE (:criteria IS NULL OR :criteria = '') OR " +

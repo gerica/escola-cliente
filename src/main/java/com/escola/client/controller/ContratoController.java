@@ -45,14 +45,13 @@ public class ContratoController {
             @Argument Optional<Integer> size, // Optional to handle default values from schema
             @Argument Optional<List<SortInput>> sort // Optional for sorting
     ) {
-
         Page<Contrato> entities = contratoService.findByFiltro(filtro, pageableHelp.getPageable(page, size, sort)).orElse(Page.empty());
         return entities.map(contratoMapper::toResponse);
     }
 
     @QueryMapping
     @PreAuthorize("isAuthenticated()")
-    public Optional<ContratoResponse> fetchByIdContrato(@Argument Integer id) {
+    public Optional<ContratoResponse> fetchByIdContrato(@Argument Long id) {
         return contratoService.findById(id).map(contratoMapper::toResponse);
     }
 

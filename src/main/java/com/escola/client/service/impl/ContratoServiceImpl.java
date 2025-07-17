@@ -1,7 +1,9 @@
 package com.escola.client.service.impl;
 
 import com.escola.client.model.entity.Contrato;
+import com.escola.client.model.mapper.ContratoMapper;
 import com.escola.client.model.request.ContratoRequest;
+import com.escola.client.repository.ContratoRepository;
 import com.escola.client.service.ContratoService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -16,19 +18,36 @@ import java.util.Optional;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 public class ContratoServiceImpl implements ContratoService {
+
+    ContratoRepository repository;
+    ContratoMapper mapper;
+
     @Override
     public Contrato save(ContratoRequest request) {
-        return null;
+        Contrato entity;
+        Optional<Contrato> optional = Optional.empty();
+        if (request.idContrato() != null) {
+            optional = repository.findById(request.idContrato());
+        }
+
+        if (optional.isPresent()) {
+            entity = mapper.updateEntity(request, optional.get());
+        } else {
+            entity = mapper.toEntity(request);
+//            entity.setdata(LocalDateTime.now());
+        }
+//        entity.setDataAtualizacao(LocalDateTime.now());
+        return repository.save(entity);
     }
 
     @Override
     public Optional<Page<Contrato>> findByFiltro(String filtro, Pageable pageable) {
-        return Optional.empty();
+        return repository.findByFiltro(filtro, pageable);
     }
 
     @Override
-    public Optional<Contrato> findById(Integer id) {
-        return Optional.empty();
+    public Optional<Contrato> findById(Long id) {
+        return repository.findById(id);
     }
 
     @Override

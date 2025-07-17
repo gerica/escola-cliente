@@ -12,7 +12,7 @@ public interface ContratoService {
 
     Optional<Page<Contrato>> findByFiltro(String filtro, Pageable pageable);
 
-    Optional<Contrato> findById(Integer id);
+    Optional<Contrato> findById(Long id);
 
     Optional<Void> deleteById(Integer id);
 }
