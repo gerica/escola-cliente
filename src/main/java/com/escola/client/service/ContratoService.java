@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import java.util.Optional;
 
 public interface ContratoService {
+    String CHAVE_CONTRATO_MODELO_PADRAO = "CHAVE_CONTRATO_MODELO_PADRAO";
+
     Contrato save(ContratoRequest request);
 
     Optional<Page<Contrato>> findByFiltro(String filtro, Pageable pageable);
@@ -15,4 +17,6 @@ public interface ContratoService {
     Optional<Contrato> findById(Long id);
 
     Optional<Void> deleteById(Integer id);
+
+    Optional<Contrato> parseContrato(Long idContrato);
 }

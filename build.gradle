@@ -52,6 +52,9 @@ dependencies {
 	implementation 'jakarta.validation:jakarta.validation-api:3.0.2' // Ou a versão mais recente
 	// Para a implementação do Bean Validation (Hibernate Validator é a mais comum)
 	implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final' // Ou a versão mais recente
+	// Adicione esta linha para incluir o WebClient e o suporte reativo
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
 
 	// Code Generation & Utilities (Lombok & MapStruct)
 	compileOnly 'org.projectlombok:lombok'

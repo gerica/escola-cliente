@@ -81,3 +81,8 @@ logging:
     org.springframework.security: INFO
     org.hibernate.SQL: DEBUG # Útil para ver as queries SQL geradas
     org.hibernate.type.descriptor.sql: TRACE # Útil para ver os parâmetros das queries
+
+
+admin-service:
+  graphql:
+    url: ${ADMIN_SERVICE_URL:http://localhost:8084/graphql}

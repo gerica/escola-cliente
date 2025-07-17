@@ -57,6 +57,7 @@ extend type Query {
 
 extend type Mutation {
     saveContrato(request: ContratoRequest!): ContratoResponse!
+    parseContrato(id: ID!): ContratoResponse!
 }
 
 

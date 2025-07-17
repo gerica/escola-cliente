@@ -18,6 +18,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Controller
@@ -60,6 +61,15 @@ public class ContratoController {
     public String apagarContrato(@Argument Integer id) {
         contratoService.deleteById(id);
         return SUCESSO;
+    }
+
+    @MutationMapping
+    @PreAuthorize("isAuthenticated()")
+    public ContratoResponse parseContrato(@Argument Long id) {
+        return contratoService.parseContrato(id)
+                .map(contratoMapper::toResponse)
+                .orElseThrow(() -> new NoSuchElementException("Contrato com ID " + id + " não encontrado."));
+        // Ou uma exceção mais específica, com
     }
 
 }
