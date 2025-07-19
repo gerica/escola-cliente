@@ -54,7 +54,7 @@ dependencies {
 	implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final' // Ou a versão mais recente
 	// Adicione esta linha para incluir o WebClient e o suporte reativo
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-
+	implementation 'com.google.genai:google-genai:1.0.0'
 
 	// Code Generation & Utilities (Lombok & MapStruct)
 	compileOnly 'org.projectlombok:lombok'

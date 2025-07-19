@@ -86,3 +86,15 @@ logging:
 admin-service:
   graphql:
     url: ${ADMIN_SERVICE_URL:http://localhost:8084/graphql}
+
+
+google:
+  api:
+    key: ${GEMINI_API_KEY}
+  ai:
+    region: us-central1 # Ou a região mais próxima de você onde o Gemini está disponível.
+    model:
+      id: gemini-pro # Ou "gemini-pro-vision" se for trabalhar com imagens + texto.
+  cloud:
+    project:
+      id: my-gemini-project # Pode ser um placeholder como "my-gemini-project" se você não tiver um ID de projeto GCP real.
